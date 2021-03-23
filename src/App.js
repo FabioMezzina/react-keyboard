@@ -7,6 +7,7 @@ class App extends Component {
     // text written by user
     text: '',
     // keyboard letter's lines
+    numbers: ['1', '2', '3', '4', '5', '6', '7', '8', '9', '0'],
     first: [
       'q', 'w', 'e', 'r', 't', 'y', 'u', 'i', 'o', 'p',
     ],
@@ -85,20 +86,33 @@ class App extends Component {
     });
   }
 
+  // render function
   render() {
+    const numbers = this.state.numbers.map( (ch, i) => {
+      return (
+        <Char character={ch} key={i} click={() => this.writeChar(ch)} />
+      );
+    });
+
     const firstLine = this.state.first.map((ch, i) => {
-      return (<Char character={ch} key={i} click={() => this.writeChar(ch)} />)
+      return (
+      <Char character={ch} key={i} click={() => this.writeChar(ch)} />)
     });
     const secondLine = this.state.second.map((ch, i) => {
-      return (<Char character={ch} key={i} click={() => this.writeChar(ch)} />)
+      return (
+      <Char character={ch} key={i} click={() => this.writeChar(ch)} />)
     });
     const thirdLine = this.state.third.map((ch, i) => {
-      return (<Char character={ch} key={i} click={() => this.writeChar(ch)} />)
+      return (
+      <Char character={ch} key={i} click={() => this.writeChar(ch)} />)
     });
 
     return (
       <div className={classes.App}>
         <div className={classes.text}>{this.state.text}</div>
+        <div className="keyboard-row">
+          {numbers}
+        </div>
         <div className="keyboard-row">
           {firstLine}
         </div>
